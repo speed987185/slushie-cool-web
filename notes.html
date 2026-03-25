@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="card">
+    <h1>Notes</h1>
+    <form method="POST" class="form">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="content" placeholder="your notes.." required></textarea>
+        <button class="btn" type="submit">Add notes</button>
+    </form>
+</section>
+
+{% for note in notes %}
+<section class="card">
+    <h2>{{ note.title }}</h2>
+    <p>{{ note.content }}</p>
+    <form method="POST" action="{{ url_for('delete', note_id=note.id) }}">
+        <button class="btn danger" type="submit">Delete</button>
+    </form>
